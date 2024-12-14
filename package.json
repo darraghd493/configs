@@ -1,6 +1,7 @@
 {
   "name": "@darraghd493/configs",
   "version": "1.0.0",
+  "homepage": "https://github.com/darraghd493/configs",
   "description": "A basic module to handle saving and loading configuration files.",
   "main": "src/index.ts",
   "directories": {
@@ -18,6 +19,10 @@
     "configuration"
   ],
   "author": "darraghd493",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/darraghd493/configs.git"
+  },
   "license": "MIT",
   "devDependencies": {
     "@eslint/js": "^9.17.0",
