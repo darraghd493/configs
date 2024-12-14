@@ -10,7 +10,7 @@ const _config = new Config();
  * 
  * @returns A new instance of the Config class.
  */
-const create = () => {
+const create = (): void => {
   return new Config();
 }
 
@@ -29,7 +29,7 @@ const save = (path: string, config: Config = _config): void => {
  * @param path - The file path to load the configuration data from.
  * @throws Will throw an error if the file does not exist or if the file content is not valid JSON.
  */
-const load = (path: string, config: Config = _config) => {
+const load = (path: string, config: Config = _config): void => {
   if (fs.existsSync(path)) {
     const data = fs.readFileSync(path, 'utf8');
     deepMerge(config.object(), JSON.parse(data));
@@ -38,7 +38,7 @@ const load = (path: string, config: Config = _config) => {
   }
 }
 
-export default () => {
+export default (): Config => {
   return _config;
 };
 
