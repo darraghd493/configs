@@ -2,12 +2,12 @@
  * A class to manage configuration settings.
  * 
  * @class Config
- * @template { [key: string]: any } - The type of the settings object.
+ * @template {Record<string, unknown>} - The type of the settings object.
  */
 class Config {
-  private settings: { [key: string]: any };
+  private settings: Record<string, unknown>;
 
-  constructor(initialSettings: { [key: string]: any } = {}) {
+  constructor(initialSettings: Record<string, unknown> = {}) {
     this.settings = initialSettings;
   }
 
@@ -15,10 +15,10 @@ class Config {
    * Retrieves the value associated with the specified key from the settings.
    *
    * @param {string} key - The key whose associated value is to be returned.
-   * @returns {any} The value associated with the specified key, or `undefined` if the key does not exist.
+   * @returns {unknown} The value associated with the specified key, or `undefined` if the key does not exist.
    */
-  get(key: string): any {
-    return this.settings.hasOwnProperty(key) ? this.settings[key] : undefined;
+  get(key: string): unknown {
+    return this.settings[key] || undefined;
   }
 
   /**
@@ -28,7 +28,7 @@ class Config {
    * @param value - The value to set for the specified key.
    * @returns void
    */
-  set(key: string, value: any): void {
+  set(key: string, value: unknown): void {
     this.settings[key] = value;
   }
 
@@ -39,7 +39,7 @@ class Config {
    * @returns `true` if the key exists, otherwise `false`.
    */
   has(key: string): boolean {
-    return this.settings.hasOwnProperty(key);
+    return this.settings[key] !== undefined;
   }
 
   /**
@@ -48,15 +48,15 @@ class Config {
    * @param key - The key of the setting to remove.
    */
   remove(key: string): void {
-    delete this.settings[key];
+    this.settings[key] = undefined;
   }
 
   /**
    * Returns the settings object.
    *
-   * @returns {Object} An object containing the settings.
+   * @returns {Record<string, unknown>} The settings object.
    */
-  object(): { [key: string]: any } {
+  object(): Record<string, unknown> {
     return this.settings;
   }
 }
