@@ -3,14 +3,19 @@
   "version": "1.0.1",
   "homepage": "https://github.com/darraghd493/configs",
   "description": "A basic module to handle saving and loading configuration files.",
-  "main": "src/index.ts",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "type": "module",
   "directories": {
     "test": "test"
   },
   "scripts": {
     "start": "nodemon --exec ts-node src/index.ts",
-    "build": "tsc",
+    "build": "tsup",
     "test": "jest",
     "lint": "eslint ./src/**/*.ts ./test/**/*.ts",
     "lint:fix": "eslint ./src/**/*.ts ./test/**/*.ts --fix"
@@ -38,6 +43,7 @@
     "nodemon": "^3.1.9",
     "ts-jest": "^29.2.5",
     "ts-node": "^10.9.2",
+    "tsup": "^8.3.5",
     "typescript": "^5.7.2",
     "typescript-eslint": "^8.18.0"
   }
