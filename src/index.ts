@@ -10,7 +10,7 @@ const _config = new Config();
  * 
  * @returns A new instance of the Config class.
  */
-const create = (): void => {
+const create = (): Config => {
   return new Config();
 }
 
