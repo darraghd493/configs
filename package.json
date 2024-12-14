@@ -27,7 +27,7 @@
   "author": "darraghd493",
   "repository": {
     "type": "git",
-    "url": "https://github.com/darraghd493/configs.git"
+    "url": "git+https://github.com/darraghd493/configs.git"
   },
   "license": "MIT",
   "publishConfig": {
