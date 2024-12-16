@@ -6,9 +6,15 @@
  */
 class Config {
   private settings: Record<string, unknown>;
+  private required: Record<string, string>;
+  private checks: Record<string, (value: unknown) => boolean>;
 
-  constructor(initialSettings: Record<string, unknown> = {}) {
+  constructor(initialSettings: Record<string, unknown> = {},
+    requiredSettings: Record<string, string> = {},
+    checks: Record<string, (value: unknown) => boolean> = {}) {
     this.settings = initialSettings;
+    this.required = requiredSettings;
+    this.checks = checks;
   }
 
   /**
@@ -49,6 +55,49 @@ class Config {
    */
   remove(key: string): void {
     this.settings[key] = undefined;
+  }
+
+  /**
+   * Requires a setting to be set.
+   * 
+   * @param key - The key of the setting to require.
+   * @param message - The message to display if the setting is not set.
+   */
+  require(key: string, message: string): void {
+    this.required[key] = message;
+  }
+
+  /**
+   * Applies a check to a setting.
+   * 
+   * @param key - The key of the setting to check.
+   * @param check - The function to use to check the setting.
+   */
+  check(key: string, check: (value: unknown) => boolean): void {
+    this.checks[key] = check;
+  }
+
+  /**
+   * Validates the settings.
+   *
+   * @returns {string[]} An array of error messages.
+   */
+  validate(): string[] {
+    const errors: string[] = [];
+
+    for (const key in this.required) {
+      if (!this.has(key)) {
+        errors.push(`${this.required[key]}: ${this.required[key]}`);
+      }
+    }
+
+    for (const key in this.checks) {
+      if (!this.checks[key](this.get(key))) {
+        errors.push(`The value for ${key} is invalid.`);
+      }
+    }
+
+    return errors;
   }
 
   /**
