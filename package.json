@@ -1,6 +1,6 @@
 {
   "name": "@darraghd493/configs",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "homepage": "https://github.com/darraghd493/configs",
   "description": "A basic module to handle saving and loading configuration files.",
   "main": "./dist/index.js",
